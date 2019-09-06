@@ -1,4 +1,3 @@
-//#include <bits/stdc++.h>
 #include <iostream>
 #include <climits>
 #include <vector>
@@ -63,49 +62,6 @@ using namespace std;
 #define time     cout<<(double(clock()-startTime )/(double)CLOCKS_PER_SEC)*1000<<" ms"<<endl;
 #define debug(k) cout<<"\t-> "<<#k<<" = "<<k<<endl;
 
-/************************************Debugging Steps*****************************************/
-
-// If aplying ceil,floor,pow,etc convert it into integer (might make you eat shit if you don't
-// Whenever using stacks,queues,etc always check that their top / front / back elements are not accessed when they are empty, thus causing runtime error
-// Think twice before using greedy
-// Remember losing 1 or 2 minutes is better than a penalty of 10 minutes
-// Use log2 instead of log()/log(2) to avoid shitty errors
-// If MLE occurs, try declaring the large array in int instead of long long
-// Always initialise anything while declaring, which will not be taken as input
-// In case of a problem having decimal calculations, try declaring everything in double rather than typecasting in each step
-// always declare the array with n+5 elements to avoid unexpected errors
-// Every problem cannot be solved by DFS easily, think of BFS too
-/********************************************************************************************/
-
-/********************************************************************************************/
-
-// Your code need to originate from the deepest of your intellectual mind
-// Best of Luck, may there never be "Wrong answer on test ##"
-
-bool sortbysec(const pair<ll,ll> &a,const pair<ll,ll> &b)
-{
-    return (a.second < b.second);
-}
-bool sortbyfirst(const pair<pair<ld,ld>,ll > &a, const pair<pair<ld,ld>,ll > &b)
-{
-    return (a.ff.ff>b.ff.ff);
-}
-bool sortbysecond(const pair<pair<ld,ld>,ll > &a, const pair<pair<ld,ld>,ll > &b)
-{
-    return (a.ff.ss>b.ff.ss);
-}
-bool _sortbysec(const pair<ll,pair<ll,ll> > &a, const pair<ll,pair<ll,ll> > &b)
-{
-    return (a.second.first>b.second.first);
-}
-bool _sortbythird(const pair<ll,pair<ll,ll> > &a, const pair<ll,pair<ll,ll> > &b)
-{
-    return (a.second.second>b.second.second);
-}
-ll gcd(ll a,ll b)
-{
-    return b?gcd(b, a % b):a;
-}
 ll min(ll a,ll b)
 {
     return a<b?a:b;
