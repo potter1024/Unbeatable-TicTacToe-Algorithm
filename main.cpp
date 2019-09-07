@@ -270,9 +270,9 @@ int main()
     len++;
     build(b,'P',0,0);
     map<int,pair<int,int> > m;
-    m[1]={0,0};
-    m[2]={0,1};
-    m[3]={0,2};
+    m[1]={0,0};                                             //    1 2 3
+    m[2]={0,1};                                             //    4 5 6
+    m[3]={0,2};                                             //    7 8 9
     m[4]={1,0};
     m[5]={1,1};
     m[6]={1,2};
@@ -294,6 +294,12 @@ int main()
         }
         int chose;
         cin>>chose;
+        while(chose<1 || chose>9)
+        {
+            cout<<"Invalid Move, Enter again\n";
+            cin>>chose;
+        }
+        int i=m[chose].ff,j=m[chose].ss;
         while(b.arr[i][j]!='-')
         {
             cout<<"Invalid Move, Enter again\n";
@@ -301,7 +307,6 @@ int main()
             i=m[chose].ff;
             j=m[chose].ss;
         }
-        int i=m[chose].ff,j=m[chose].ss;
         b.arr[i][j]='O';
         if(over(b))
             return 0;
