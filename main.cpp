@@ -294,6 +294,13 @@ int main()
         }
         int chose;
         cin>>chose;
+        while(b.arr[i][j]!='-')
+        {
+            cout<<"Invalid Move, Enter again\n";
+            cin>>chose;
+            i=m[chose].ff;
+            j=m[chose].ss;
+        }
         int i=m[chose].ff,j=m[chose].ss;
         b.arr[i][j]='O';
         if(over(b))
