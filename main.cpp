@@ -279,7 +279,7 @@ int main()
     m[7]={2,0};
     m[8]={2,1};
     m[9]={2,2};
-    cout<<"\t\t\t\t\tYou can't beat me, try me if you want!!\n";
+    cout<<"\t\t\t\t\tYou can't beat me, but you can try!!\n";
     while(1)
     {
         if(over(b))
