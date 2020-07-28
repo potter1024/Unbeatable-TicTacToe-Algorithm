@@ -3,6 +3,8 @@
 An implementation of minimax algorithm to construct an unbeatable AI in Tic-Tac-Toe.
 Time complexity is O(number of states) which is less than 10^6 in tic-tac-toe
 
+It builds the complete game tree and precomputes the best choice for every state of the game and traverses throught the tree during the runtime.
+
 Total states = 549946
 
 If computer starts then:
