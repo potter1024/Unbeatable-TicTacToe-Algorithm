@@ -1,5 +1,7 @@
 # Tic-tac-toe
 
+Used Minimax algorithm of Game Theory
+
 An implementation of minimax algorithm to construct an unbeatable AI in Tic-Tac-Toe.
 Time complexity is O(number of states) which is less than 10^6 in tic-tac-toe
 
