@@ -62,21 +62,17 @@ using namespace std;
 #define time     cout<<(double(clock()-startTime )/(double)CLOCKS_PER_SEC)*1000<<" ms"<<endl;
 #define debug(k) cout<<"\t-> "<<#k<<" = "<<k<<endl;
 
-ll min(ll a,ll b)
-{
+ll min(ll a,ll b){
     return a<b?a:b;
 }
-ll max(ll a,ll b)
-{
+ll max(ll a,ll b){
     return a>b?a:b;
 }
-struct board
-{
+struct board{
     char arr[3][3];
     int score;
     int index;
-    board()
-    {
+    board(){
         for(int i=0;i<3;i++)
             for(int j=0;j<3;j++)
                 arr[i][j]='-';
@@ -85,95 +81,93 @@ struct board
 vector<int> game[1000000];
 vector<board> store;
 map<int,int> mapping;       // from index to store index
-char check(board b)
-{
-    for(int i=0;i<3;i++)
-    {
+char check(board b){
+    for(int i=0;i<3;i++){
         int count=0;
-        for(ll j=0;j<3;j++)
-        {
-            if(b.arr[i][j]=='X')
+        for(ll j=0;j<3;j++){
+            if(b.arr[i][j]=='X'){
                 count++;
+            }
         }
-        if(count==3)
+        if(count==3){
             return 'X';
-        count=0;
-        for(ll j=0;j<3;j++)
-        {
-            if(b.arr[i][j]=='O')
-                count++;
         }
-        if(count==3)
+        count=0;
+        for(ll j=0;j<3;j++){
+            if(b.arr[i][j]=='O'){
+                count++;
+            }
+        }
+        if(count==3){
             return 'O';
-        count=0;
-        for(ll j=0;j<3;j++)
-        {
-            if(b.arr[j][i]=='O')
-                count++;
         }
-        if(count==3)
+        count=0;
+        for(ll j=0;j<3;j++){
+            if(b.arr[j][i]=='O'){
+                count++;
+            }
+        }
+        if(count==3){
             return 'O';
-        count=0;
-        for(ll j=0;j<3;j++)
-        {
-            if(b.arr[j][i]=='X')
-                count++;
         }
-        if(count==3)
+        count=0;
+        for(ll j=0;j<3;j++){
+            if(b.arr[j][i]=='X'){
+                count++;
+            }
+        }
+        if(count==3){
             return 'X';
+        }
     }
-    if(b.arr[0][0]=='X' && b.arr[1][1]=='X' && b.arr[2][2]=='X')
+    if(b.arr[0][0]=='X' && b.arr[1][1]=='X' && b.arr[2][2]=='X'){
         return 'X';
-    if(b.arr[0][0]=='O' && b.arr[1][1]=='O' && b.arr[2][2]=='O')
+    }
+    if(b.arr[0][0]=='O' && b.arr[1][1]=='O' && b.arr[2][2]=='O'){
         return 'O';
-    if(b.arr[0][2]=='X' && b.arr[1][1]=='X' && b.arr[2][0]=='X')
+    }
+    if(b.arr[0][2]=='X' && b.arr[1][1]=='X' && b.arr[2][0]=='X'){
         return 'X';
-    if(b.arr[0][2]=='O' && b.arr[1][1]=='O' && b.arr[2][0]=='O')
+    }
+    if(b.arr[0][2]=='O' && b.arr[1][1]=='O' && b.arr[2][0]=='O'){
         return 'O';
+    }
     int count=0;
-    for(int i=0;i<3;i++)
-    {
-        for(int j=0;j<3;j++)
-        {
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
             if(b.arr[i][j]=='-')
                 count++;
         }
     }
-    if(count==0)
+    if(count==0){
         return 'D';
-    else
+    }
+    else{
         return '-';
+    }
 }
 int len=0,win=0,lose=0,draw=0;
-void build(board b,char turn,int index,int depth)
-{
-    if(check(b)=='X')
-    {
+void build(board b,char turn,int index,int depth){
+    if(check(b)=='X'){
         store[mapping[index]].score=10;
         win++;
         return;
     }
-    if(check(b)=='O')
-    {
+    if(check(b)=='O'){
         store[mapping[index]].score=-10;
         lose++;
         return;
     }
-    if(check(b)=='D')
-    {
+    if(check(b)=='D'){
         store[mapping[index]].score=0;
         draw++;
         return;
     }
     int ma=-10000,mi=10000;
-    if(turn=='C')
-    {
-        for(int i=0;i<3;i++)
-        {
-            for(int j=0;j<3;j++)
-            {
-                if(b.arr[i][j]=='-')
-                {
+    if(turn=='C'){
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(b.arr[i][j]=='-'){
                     board next=b;
                     next.arr[i][j]='X';
                     next.index=len;
@@ -189,14 +183,10 @@ void build(board b,char turn,int index,int depth)
         }
         store[mapping[index]].score=ma-depth;
     }
-    if(turn=='P')
-    {
-        for(int i=0;i<3;i++)
-        {
-            for(int j=0;j<3;j++)
-            {
-                if(b.arr[i][j]=='-')
-                {
+    if(turn=='P'){
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(b.arr[i][j]=='-'){
                     board next=b;
                     next.arr[i][j]='O';
                     next.index=len;
@@ -213,55 +203,45 @@ void build(board b,char turn,int index,int depth)
         store[mapping[index]].score=mi+depth;
     }
 }
-void print(board b)
-{
-    for(int i=0;i<3;i++)
-    {
-        for(int j=0;j<3;j++)
-        {
+void print(board b){
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
             cout<<b.arr[i][j]<<" ";
         }
         cout<<endl;
     }
     cout<<endl;
 }
-bool compare(board b1,board b2)
-{
+bool compare(board b1,board b2){
     int count=0;
-    for(int i=0;i<3;i++)
-    {
-        for(int j=0;j<3;j++)
-        {
-            if(b1.arr[i][j]==b2.arr[i][j])
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            if(b1.arr[i][j]==b2.arr[i][j]){
                 count++;
+            }
         }
     }
     return count==9;
 }
-bool over(board b)
-{
-    if(check(b)=='X')
-    {
+bool over(board b){
+    if(check(b)=='X'){
         print(b);
         cout<<"You Lost\n";
         return 1;
     }
-    if(check(b)=='O')
-    {
+    if(check(b)=='O'){
         print(b);
         cout<<"You Win\n";
         return 1;
     }
-    if(check(b)=='D')
-    {
+    if(check(b)=='D'){
         print(b);
         cout<<"Tie\n";
         return 1;
     }
     return 0;
 }
-int main()
-{
+int main(){
     board b;
     b.index=0;
     store.pb(b);
@@ -280,47 +260,40 @@ int main()
     m[8]={2,1};
     m[9]={2,2};
     cout<<"\t\t\t\t\tYou can't beat me, but you can try!!\n";
-    while(1)
-    {
-        if(over(b))
+    while(1){
+        if(over(b)){
             return 0;
-        for(int i=0;i<3;i++)
-        {
-            for(int j=0;j<3;j++)
-            {
+        }
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
                 cout<<b.arr[i][j]<<" ";
             }
             cout<<endl;
         }
         int chose;
         cin>>chose;
-        while(chose<1 || chose>9)
-        {
+        while(chose<1 || chose>9){
             cout<<"Invalid Move, Enter again\n";
             cin>>chose;
         }
         int i=m[chose].ff,j=m[chose].ss;
-        while(b.arr[i][j]!='-')
-        {
+        while(b.arr[i][j]!='-'){
             cout<<"Invalid Move, Enter again\n";
             cin>>chose;
             i=m[chose].ff;
             j=m[chose].ss;
         }
         b.arr[i][j]='O';
-        if(over(b))
+        if(over(b)){
             return 0;
-        for(int i=0;i<game[b.index].size();i++)
-        {
-            if(compare(b,store[mapping[game[b.index][i]]]))
-            {
+        }
+        for(int i=0;i<game[b.index].size();i++){
+            if(compare(b,store[mapping[game[b.index][i]]])){
                 b=store[mapping[game[b.index][i]]];
                 int ma=-1;
                 board temp;
-                for(int j=0;j<game[b.index].size();j++)
-                {
-                    if(store[mapping[game[b.index][j]]].score>ma)
-                    {
+                for(int j=0;j<game[b.index].size();j++){
+                    if(store[mapping[game[b.index][j]]].score>ma){
                         ma=store[mapping[game[b.index][j]]].score;
                         temp=store[mapping[game[b.index][j]]];
                     }
