@@ -1,5 +1,7 @@
 # Tic-tac-toe
 
+This is a code for building unbeatable Tic-tac-toe program in C++. It can be proved that the algorithm cannot lose.
+
 Used Minimax algorithm of Game Theory
 
 An implementation of minimax algorithm to construct an unbeatable AI in Tic-Tac-Toe.
