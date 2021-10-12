@@ -229,7 +229,7 @@ bool over(board b){
         cout<<"You Lost\n";
         return 1;
     }
-    if(check(b)=='O'){
+    if(check(b)=='O'){  // this will never happen, just written for the sake of completeness.
         print(b);
         cout<<"You Win\n";
         return 1;
